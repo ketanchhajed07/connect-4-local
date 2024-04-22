@@ -31,8 +31,10 @@ function WinnerIndicator() {
     <>
       {winner !== null && (
         <WinnerBox>
-          <WinnerName>Player {winner + 1}</WinnerName>
-          <WinnerText>Wins</WinnerText>
+          <WinnerName>
+            {winner === -1 ? "draw" : `Player ${winner + 1}`}
+          </WinnerName>
+          <WinnerText>{winner === -1 ? "drawn" : "wins"}</WinnerText>
           <Button onClick={handlePlayAgain}>play again</Button>
         </WinnerBox>
       )}
