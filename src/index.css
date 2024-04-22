@@ -1,0 +1,56 @@
+:root {
+  --color-purple: #7945ff;
+  --color-dark-purple: #5c2dd5;
+  --color-red: #ff6687;
+  --color-yellow: #ffce67;
+  --color-white: #fff;
+  --color-black: #000;
+
+  --border-default: 0.3rem solid var(--color-black);
+  --border-hover: 0.3rem solid var(--color-dark-purple);
+
+  --border-radius-sm: 2rem;
+  --border-radius-md: 4rem;
+  --border-radius-lg: 6rem;
+
+  --shadow-default: 0 1rem 0 0 var(--color-black);
+  --shadow-hover: 0 1rem 0 0 var(--color-dark-purple);
+
+  --font-size-sm: 1.6rem;
+  --font-size-md: 2rem;
+  --font-size-lg: 2.4rem;
+  --font-size-xl: 5.6rem;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: var(--font-size-sm);
+  text-transform: uppercase;
+}
+
+button {
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: inherit;
+}
+
+body:has(.overlay) {
+  overflow: hidden;
+}
