@@ -10,7 +10,6 @@ const initialState = {
   scores: [0, 0],
   currentPlayer: 0,
   timer: SEC_PER_TURN,
-  moves: 0,
   winner: null,
   winningCells: [],
   status: "waiting",
@@ -40,7 +39,6 @@ const reducer = function (state, action) {
         scores: state.scores.map((score, i) =>
           i === state.currentPlayer ? score + 1 : score
         ),
-        moves: state.moves + 1,
         winner: state.currentPlayer,
         winningCells: action.payload.winningCells,
         status: "finished",
@@ -49,7 +47,6 @@ const reducer = function (state, action) {
       return {
         ...state,
         board: action.payload.updatedBoard,
-        moves: state.moves + 1,
         winner: -1,
         status: "finished",
       };
@@ -57,7 +54,6 @@ const reducer = function (state, action) {
       return {
         ...state,
         board: action.payload.updatedBoard,
-        moves: state.moves + 1,
         currentPlayer: state.currentPlayer === 0 ? 1 : 0,
         timer: SEC_PER_TURN,
       };
@@ -98,9 +94,7 @@ function GameProvider({ children }) {
       board,
       scores,
       currentPlayer,
-      firstTurn,
       timer,
-      moves,
       winner,
       winningCells,
       status,
@@ -114,9 +108,7 @@ function GameProvider({ children }) {
         board,
         scores,
         currentPlayer,
-        firstTurn,
         timer,
-        moves,
         winner,
         winningCells,
         status,

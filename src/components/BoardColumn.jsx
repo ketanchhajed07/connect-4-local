@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useGame } from "../contexts/gameContext";
 import BoardCell from "./BoardCell";
 import checkForWin from "../utils/checkForWin";
+import checkForDraw from "../utils/checkForDraw";
 
 const StyledBoardColumn = styled.div`
   display: flex;
@@ -32,7 +33,7 @@ const StyledBoardColumn = styled.div`
 `;
 
 function BoardColumn({ columnIndex, column }) {
-  const { board, currentPlayer, status, paused, moves, dispatch } = useGame();
+  const { board, currentPlayer, status, paused, dispatch } = useGame();
 
   function handleMakeMove(columnKey) {
     if (status !== "playing" || paused) return;
@@ -50,16 +51,19 @@ function BoardColumn({ columnIndex, column }) {
         return col;
       }
     });
-    const updatedMoves = moves + 1;
     const winningCells = checkForWin(updatedBoard, currentPlayer);
+    let isDraw = false;
+    if (winningCells.length === 0) {
+      isDraw = checkForDraw(updatedBoard);
+    }
     if (winningCells.length > 0)
       dispatch({
         type: "win",
         payload: { updatedBoard, currentPlayer, winningCells },
       });
-    if (winningCells.length === 0 && updatedMoves === 42)
+    if (isDraw)
       dispatch({ type: "draw", payload: { updatedBoard, currentPlayer } });
-    if (winningCells.length === 0 && updatedMoves < 42)
+    if (winningCells.length === 0 && !isDraw)
       dispatch({ type: "move", payload: { updatedBoard, currentPlayer } });
   }
 
