@@ -36,6 +36,7 @@ function BoardColumn({ columnIndex, column }) {
   const { board, currentPlayer, status, paused, dispatch } = useGame();
 
   function handleMakeMove(columnKey) {
+    if (board[columnKey].every((cell) => cell !== null)) return;
     if (status !== "playing" || paused) return;
     let moved = false;
     const updatedBoard = board.map((col, i) => {
