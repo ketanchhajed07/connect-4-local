@@ -9,6 +9,7 @@ const initialState = {
   board: Array(7).fill(Array(6).fill(null)),
   scores: [0, 0],
   currentPlayer: 0,
+  firstTurn: 0,
   timer: SEC_PER_TURN,
   winner: null,
   winningCells: [],
@@ -72,7 +73,8 @@ const reducer = function (state, action) {
         ...initialState,
         scores: state.scores,
         status: "playing",
-        currentPlayer: state.currentPlayer === 0 ? 1 : 0,
+        currentPlayer: state.firstTurn === 0 ? 1 : 0,
+        firstTurn: state.firstTurn === 0 ? 1 : 0,
       };
     case "decrease-timer":
       return {

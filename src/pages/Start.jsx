@@ -10,6 +10,7 @@ const StyledStart = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  
   background-color: var(--color-purple);
 
   @media (min-width: 48em) {
