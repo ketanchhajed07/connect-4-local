@@ -63,7 +63,7 @@ function OverlayMenu() {
   return (
     <>
       {paused && (
-        <Overlay className="overlay">
+        <Overlay onClick={handleResumeGame} className="overlay">
           <ModalMenu>
             <ModalMenuHeading>pause</ModalMenuHeading>
             <ButtonGroup>
